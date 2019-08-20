@@ -1,0 +1,26 @@
+<div class="search">
+    <input type="text" class="searchTerm" [(ngModel)]="searchkey" (keyup)="FilterByKey()" placeholder="What are you looking for?">
+</div>
+<div class="row">
+    <div class="col" *ngFor="let news of displayNewsList">
+        <div class="clash-card barbarian card-link" (click)="OpenNewTab(news.url)">
+            <div class="clash-card__image clash-card__image--barbarian">
+                <img *ngIf="news.urlToImage" [src]="news.urlToImage" alt="barbarian" />
+                <img *ngIf="!news.urlToImage" src="../../assets/NEWS.jpeg" alt="barbarian" />
+            </div>
+            <div *ngIf="news.author" class="clash-card__level clash-card__level--barbarian">{{news.author}}</div>
+            <div *ngIf="!news.author" class="clash-card__level clash-card__level--barbarian">Unknown</div>
+            <div class="clash-card__unit-name">{{news.title | titlecase}}</div>
+            <div class="clash-card__unit-description">
+                {{news.description}}
+            </div>
+
+            <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+                {{news.publishedAt | date: 'MMM d | H:mm'}}
+                <br />
+                {{news.source.name}}
+            </div>
+
+        </div> <!-- end clash-card barbarian-->
+    </div> <!-- end wrapper -->
+</div> <!-- end container -->
